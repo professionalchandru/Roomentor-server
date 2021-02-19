@@ -54,13 +54,14 @@ rooms table: {
 	startDate: date,
 	endDate: date, (hint: these dates used to check room is avaliable and change the status of room if the date is not applicable)
 	type: string(vlaue: single bed room, double bed, classic(2x)...)
+	noOfBeds: {type: Number,required: true,},
 	size: string (value: 120 sqft, ...)
 	minimumBookingPeriod: number,
 	MaximumBookingPeriod: number,
 	rentPerDay: number,
 	amenities: array (value: wifi, ac, cctv, tv, reception, daily house keeping, security, fire-extinguisher, first aid, laggage assistance)
 	photos: array (value : imgae id, secure url, created at)
-	ownerRefernce: string (value: object id of owner)
+	ownerReference: string (value: object id of owner)
 	createdAt: date,
 	createdBy: object
 }

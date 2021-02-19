@@ -77,6 +77,12 @@ const ownerSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  updatedAt: {
+    type: Date,
+  },
+  updatedBy: {
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model("ownerData", ownerSchema);

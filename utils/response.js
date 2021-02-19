@@ -3,6 +3,10 @@
 const messages = require("../constants/messages");
 
 module.exports = {
+  /**
+   * COMMON FUNCTION TO SEND RESPONSE TO CLIENT
+   * @param {response}
+   */
   send: function ({ result, res }) {
     let statusCode = result.statusCode || 200;
     let data;

@@ -38,6 +38,12 @@ const roomStatusSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  updatedAt: {
+    type: Date,
+  },
+  updatedBy: {
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model("roomStatus", roomStatusSchema);

@@ -10,7 +10,7 @@ const roomSchema = new mongoose.Schema({
     required: true,
   },
   address: {
-    type: Text,
+    type: String,
     min: 50,
     max: 250,
     required: true,
@@ -35,8 +35,6 @@ const roomSchema = new mongoose.Schema({
   },
   pincode: {
     type: Number,
-    min: 3,
-    max: 50,
     required: true,
   },
   status: {
@@ -58,16 +56,24 @@ const roomSchema = new mongoose.Schema({
     type: String, // like classic 2x, double bed room, etc
     required: true,
   },
+  noOfBeds: {
+    type: Number,
+    required: true,
+  },
   size: {
     type: String, // like 120 sqft
     required: true,
   },
   minimumBookingPeriod: {
     type: Number,
+    min: 1,
+    max: 30,
     required: true,
   },
-  MaximumBookingPeriod: {
+  maximumBookingPeriod: {
     type: Number,
+    min: 1,
+    max: 30,
     required: true,
   },
   rentPerDay: {
@@ -91,6 +97,12 @@ const roomSchema = new mongoose.Schema({
   createdBy: {
     type: Object,
     required: true,
+  },
+  updatedAt: {
+    type: Date,
+  },
+  updatedBy: {
+    type: Object,
   },
 });
 

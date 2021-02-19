@@ -67,6 +67,12 @@ const customerSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  updatedAt: {
+    type: Date,
+  },
+  updatedBy: {
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model("customerData", customerSchema);
