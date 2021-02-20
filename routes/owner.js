@@ -63,6 +63,10 @@ router.put(
   common.checkAuth,
   async (req, res) => {
     try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
       const result = await owner.editOwner({ req });
       return response.send({
         result,
@@ -79,6 +83,10 @@ router.put(
  */
 router.delete(url.ownerDelete, common.checkAuth, async (req, res) => {
   try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
     const result = await owner.deleteOwner({ req });
     return response.send({
       result,

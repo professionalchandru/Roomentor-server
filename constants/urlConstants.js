@@ -23,4 +23,6 @@ module.exports = {
   deleteRoom: "/rooms/delete/:roomId",
   updateRoomStatus: "/rooms/updateStatus",
   selectRoom: "/rooms/:roomId",
+  uploadImages: "/rooms/uploadImage/:roomId",
+  deleteImages: "/rooms/deleteImage/:roomId",
 };

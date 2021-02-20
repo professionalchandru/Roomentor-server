@@ -43,6 +43,10 @@ router.put(
   common.checkAuth,
   async (req, res) => {
     try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
       const result = await customer.editCustomer({ req });
       return response.send({
         result,
@@ -59,6 +63,10 @@ router.put(
  */
 router.delete(url.customerDelete, common.checkAuth, async (req, res) => {
   try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
     const result = await customer.deleteCustomer({ req });
     return response.send({
       result,
