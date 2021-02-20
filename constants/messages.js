@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = {
+  defaultMessage: "Something Went Wrong",
   dbConnectionError: "Data Base Connection Error",
   dbConnectionSuccess: "Data Base Connected Successfully",
   appListening: "Server listening on port",
@@ -30,4 +31,9 @@ module.exports = {
   invalidRoom: "Invalid Room",
   roomUpdatedSuccessfully: "Room Updated Successfully",
   roomDeletedSuccessfully: "Room Deleted Successfully",
+
+  unSupportedFileFormat:
+    "Unsupported File Format. Please Upload only .jpeg or .jpg format.",
+  uploadedSuccessfully: "Images Uploaded Successfully",
+  removedSuccessfully: "Image Removed Successfully",
 };

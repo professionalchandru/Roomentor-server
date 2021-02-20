@@ -10,6 +10,7 @@ const validator = require("express-joi-validation").createValidator({
 const { validateAddRoom, validateEditRoom } = require("../schema/room");
 const messages = require("../constants/messages");
 const common = require("../utils/common");
+const upload = require("../utils/multer");
 
 /**
  * ADD NEW ROOM
@@ -20,6 +21,10 @@ router.post(
   common.checkAuth,
   async (req, res) => {
     try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
       const result = await room.addRoom({ req });
       return response.send({
         result,
@@ -40,6 +45,10 @@ router.put(
   common.checkAuth,
   async (req, res) => {
     try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
       const result = await room.editRoom({ req });
       return response.send({
         result,
@@ -56,7 +65,54 @@ router.put(
  */
 router.delete(url.deleteRoom, common.checkAuth, async (req, res) => {
   try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
     const result = await room.deleteRoom({ req });
+    return response.send({
+      result,
+      res,
+    });
+  } catch (err) {
+    throw err;
+  }
+});
+
+/**
+ * UPLOAD ROOM IMAGES
+ */
+router.put(
+  url.uploadImages,
+  common.checkAuth,
+  upload.array("image"),
+  async (req, res) => {
+    try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
+      const result = await room.uploadImages({ req });
+      return response.send({
+        result,
+        res,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+);
+
+/**
+ * DELETE ROOM IMAGES
+ */
+router.delete(url.deleteImages, common.checkAuth, async (req, res) => {
+  try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
+    const result = await room.deleteImages({ req });
     return response.send({
       result,
       res,

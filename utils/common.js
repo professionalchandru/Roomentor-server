@@ -38,7 +38,7 @@ module.exports = {
 
       await jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-          return authRes.status(400).send({
+          return authRes.status(401).send({
             status: messages.failure,
             message: err,
           });
