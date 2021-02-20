@@ -5,12 +5,12 @@ This is a sample project which is developed from scratch. By this applicatiion c
 # Key Technologies
 
 The key technologies which is used in this projects are follows:
-Backend language: Node Js
-Backend frame works: express js
-Validation library: Joi
-Database: MongoDB
-object storage: Cloudinary
-Authentication: JWT
+1. Backend language: Node Js
+2. Backend frame works: express js
+3. Validation library: Joi
+4. Database: MongoDB
+5. object storage: Cloudinary
+6. Authentication: JWT
 and some other dependecies. For versions and other dependencies please refer package.json
 
 # .env
