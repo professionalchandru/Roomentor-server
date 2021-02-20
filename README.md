@@ -9,16 +9,26 @@ Backend language: Node Js
 Backend frame works: express js
 Validation library: Joi
 Database: MongoDB
+object storage: Cloudinary
 Authentication: JWT
 and some other dependecies. For versions and other dependencies please refer package.json
 
 # .env
+
+create cloudinary account to get CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET. You can signup cloudinary account : https://cloudinary.com/users/register/free
 
 Here I don't attach my .env file. Instead you need to create .env file and add the follwing things,
 
 1. DB_URI = mongodb+srv://username:password@cluster0.xr9i8.mongodb.net/dbname?retryWrites=true&w=majority // Please change the username, password and dbname into your mongodb credentials
 
 2. JWT_SECRET = "your secret key"
+
+3. CLOUD_NAME= "your cloud name"
+
+4. CLOUD_API_KEY= "your cloud api_key"
+
+5. CLOUD_API_SECRET = "your cloud api secret"
+ 
 
 # To download and install a project
 
