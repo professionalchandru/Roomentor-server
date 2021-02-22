@@ -1,0 +1,502 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Roomentor",
+		"_postman_id": "ab0d3596-796e-e043-1969-5c5a9933b743",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Book Rooms and Room Status",
+			"description": "",
+			"item": [
+				{
+					"name": "Update Room Status by Owner",
+					"request": {
+						"url": "http://localhost:5000/rooms/roomStatus/60338ef3c2009c17388ac8a6",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTA5MTYsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5MDkxNiwiZXhwIjoxNjEzOTk0NTE2fQ.JPrKRc89jK-KzORQnHsP0jewU_1Jxidhx88rqhO3VH8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "To update room status by owner after customer vacate room.\npleas use your room status id in api"
+					},
+					"response": []
+				},
+				{
+					"name": "Book Rooms By Customer",
+					"request": {
+						"url": "http://localhost:5000/rooms/6033a7c24d9aff1ab4add14e/book",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTQwMDE2NzYsImp0aSI6IjYwMzNiNWYwNzlmMTBkMTA4MGFmNzJmMSIsInVzZXIiOnsiaWQiOiI2MDMzYjVmMDc5ZjEwZDEwODBhZjcyZjEiLCJuYW1lIjoiY2hhbmRydSIsImVtYWlsIjoiY2hhbmRydWN1c3RvbWVyQGdtYWlsLmNvbSIsInR5cGUiOiJjdXN0b21lciJ9fSwiaWF0IjoxNjE0MDAxNjc1LCJleHAiOjE2MTQwMDUyNzV9.qDwzwV_8GCWtthkDfVrT_ymjgrjptcGZV9HcTXgoG0s",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Book room by customer. use your room id here"
+					},
+					"response": []
+				},
+				{
+					"name": "List Room Status by Owner Id",
+					"request": {
+						"url": "localhost:5000/rooms/roomStatus/owner/6033811b242a6b15f0eeca35",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTA5MTYsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5MDkxNiwiZXhwIjoxNjEzOTk0NTE2fQ.JPrKRc89jK-KzORQnHsP0jewU_1Jxidhx88rqhO3VH8",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Owner can see list of rooms booked by customer. User your owner id here"
+					},
+					"response": []
+				},
+				{
+					"name": "List Room Status by Customer Id",
+					"request": {
+						"url": "localhost:5000/rooms/roomStatus/customer/6033821c242a6b15f0eeca36",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTA5MTYsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5MDkxNiwiZXhwIjoxNjEzOTk0NTE2fQ.JPrKRc89jK-KzORQnHsP0jewU_1Jxidhx88rqhO3VH8",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Customer can see list of rooms booked by customer. User your customer id here"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"description": "",
+			"item": [
+				{
+					"name": "Upload Images by Owner",
+					"request": {
+						"url": "localhost:5000/rooms/uploadImage/603392adc2009c17388ac8a7",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTYyNTAsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5NjI1MCwiZXhwIjoxNjEzOTk5ODUwfQ.FqhgJK9LtE1b8rSYffGkYfNssv7AWL7potQA6KGORrw",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"value": "",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"description": "Upload image for room by owner. use your room id here"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Image by Owner",
+					"request": {
+						"url": "localhost:5000/rooms/deleteImage/6033879eed181c143087b430",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTA5MTYsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5MDkxNiwiZXhwIjoxNjEzOTk0NTE2fQ.JPrKRc89jK-KzORQnHsP0jewU_1Jxidhx88rqhO3VH8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"value": "",
+									"description": "",
+									"type": "file",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"value": "",
+									"description": "",
+									"type": "file",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Delete image for room by owner. use your room id here"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"description": "",
+			"item": [
+				{
+					"name": "Available dates check for room",
+					"request": {
+						"url": "localhost:5000/rooms/availableDates/6033a7c24d9aff1ab4add14e",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTQwMDUyMDQsImp0aSI6IjYwMzNiNWYwNzlmMTBkMTA4MGFmNzJmMSIsInVzZXIiOnsiaWQiOiI2MDMzYjVmMDc5ZjEwZDEwODBhZjcyZjEiLCJuYW1lIjoiY2hhbmRydSIsImVtYWlsIjoiY2hhbmRydWN1c3RvbWVyQGdtYWlsLmNvbSIsInR5cGUiOiJjdXN0b21lciJ9fSwiaWF0IjoxNjE0MDA1MjA0LCJleHAiOjE2MTQwMDg4MDR9.IdWR8hojoiCRC-xB_Ye5nxAi9qjmYKPkKbJ_C2ebAMY",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Check available dates of room by customer. use your room id here"
+					},
+					"response": []
+				},
+				{
+					"name": "List Room By City Name",
+					"request": {
+						"url": "localhost:5000/rooms/list/kariakudi",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODgyNzMsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5ODgyNzIsImV4cCI6MTYxMzk5MTg3Mn0.v6wqoeMB04X9XJpwk_Spqm3-jP54HeLUDImQPPwGsoo",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "List all rooms when searched by city name. Use your desired city name which present in db"
+					},
+					"response": []
+				},
+				{
+					"name": "List All Rooms",
+					"request": {
+						"url": "localhost:5000/rooms/list",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODgyNzMsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5ODgyNzIsImV4cCI6MTYxMzk5MTg3Mn0.v6wqoeMB04X9XJpwk_Spqm3-jP54HeLUDImQPPwGsoo",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "List all rooms in db"
+					},
+					"response": []
+				},
+				{
+					"name": "Select Room By Id",
+					"request": {
+						"url": "localhost:5000/rooms/6033879eed181c143087b430",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODgyNzMsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5ODgyNzIsImV4cCI6MTYxMzk5MTg3Mn0.v6wqoeMB04X9XJpwk_Spqm3-jP54HeLUDImQPPwGsoo",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Select particular room by customer or owner to details of that. Use your room id here"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit room by owner",
+					"request": {
+						"url": "localhost:5000/rooms/edit/6033879eed181c143087b430",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODgyNzMsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5ODgyNzIsImV4cCI6MTYxMzk5MTg3Mn0.v6wqoeMB04X9XJpwk_Spqm3-jP54HeLUDImQPPwGsoo",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\" : \"roomNo 1\",\r\n\t\"address\": \"91, venkatachalam street, N. pudur\",\r\n\t\"city\": \"kariakudi\",\r\n\t\"state\" : \"Tamil Nadu\",\r\n\t\"pincode\" : 630001,\r\n\t\"landMark\" : \"sedhu meenal mahal\",\t\r\n\t\"type\": \"classic 2x\",\r\n\t\"noOfBeds\": 2,\r\n\t\"size\": \"120 sqft\",\r\n\t\"minimumBookingPeriod\": 1,\r\n\t\"maximumBookingPeriod\": 15,\r\n\t\"rentPerDay\": 200,\r\n\t\"amenities\": [\"wifi\", \"ac\", \"tv\"]\t\r\n}"
+						},
+						"description": "Owner can edit a room after creation of room. Use your room id here"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Room by Owner",
+					"request": {
+						"url": "localhost:5000/rooms/delete/6033a7c24d9aff1ab4add14e",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTI1MjAsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5MjUxOSwiZXhwIjoxNjEzOTk2MTE5fQ.jvqiggujlnqSGWxEmZzbGuXUqFILBaMI4bZPJB9dRqQ",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "User can delete a room. Use your room id here\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Room by Owner",
+					"request": {
+						"url": "localhost:5000/rooms/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTc5NjUsImp0aSI6IjYwMzNhNzVmNTQ3MTU2MWUwMDIzMWNmNCIsInVzZXIiOnsiaWQiOiI2MDMzYTc1ZjU0NzE1NjFlMDAyMzFjZjQiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5OTc5NjUsImV4cCI6MTYxNDAwMTU2NX0.u-mtuHQRSWFxBWqWjYb9AbT45jYnZSH0wNI2gA_agRo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\" : \"roomNo 3\",\r\n\t\"address\": \"91, venkatachalam street\",\r\n\t\"city\": \"kariakudi\",\r\n\t\"state\" : \"Tamil Nadu\",\r\n\t\"pincode\" : 630001,\r\n\t\"landMark\" : \"sedhu meenal mahal\",\r\n\t\"status\": \"available\",\r\n\t\"type\": \"classic 2x\",\r\n\t\"noOfBeds\": 2,\r\n\t\"size\": \"120 sqft\",\r\n\t\"minimumBookingPeriod\": 1,\r\n\t\"maximumBookingPeriod\": 15,\r\n\t\"rentPerDay\": 200,\r\n\t\"amenities\": [\"wifi\", \"ac\", \"tv\"]\t\r\n}"
+						},
+						"description": "Owner can create a room after signin"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Owners",
+			"description": "",
+			"item": [
+				{
+					"name": "Signup Owner",
+					"request": {
+						"url": "localhost:5000/users/owner/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Chandra Manikandan\",\r\n\t\"email\": \"chandruowner@gmail.com\",\r\n\t\"mobile\": 9629288008,\t\r\n\t\"password\": \"chandru007\",\r\n\t\"confirmPassword\": \"chandru007\",\r\n\t\"type\": \"owner\",\r\n\t\"address\": \"91, venkatachalam street\",\r\n\t\"city\": \"karaikudi\",\r\n\t\"state\": \"tamil nadu\",\r\n\t\"pincode\": 630001,\r\n\t\"securityQuestion\": \"what is your fav sports\",\r\n\t\"securityAnswer\": \"Foot ball\"\r\n}"
+						},
+						"description": "Create owner account"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in owner",
+					"request": {
+						"url": "localhost:5000/users/owner/signin",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"chandruowner@gmail.com\",\r\n\t\"password\": \"chandru007\",\r\n\t\"type\": \"owner\"\r\n}"
+						},
+						"description": "Owner can sign in using email, password and type"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Owner Account",
+					"request": {
+						"url": "http://localhost:5000/users/owner/edit/6033811b242a6b15f0eeca35",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODgyNzMsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIiwiZW1haWwiOiJjaGFuZHJ1b3duZXJAZ21haWwuY29tIiwidHlwZSI6Im93bmVyIn19LCJpYXQiOjE2MTM5ODgyNzIsImV4cCI6MTYxMzk5MTg3Mn0.v6wqoeMB04X9XJpwk_Spqm3-jP54HeLUDImQPPwGsoo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Chandra Manikandan S\",\r\n\t\"email\": \"chandruowner@gmail.com\",\r\n\t\"mobile\": 9629288008,\t\r\n\t\"password\": \"chandru007\",\t\r\n\t\"address\": \"91, venkatachalam street\",\r\n\t\"city\": \"karaikudi\",\r\n\t\"state\": \"tamil nadu\",\r\n\t\"pincode\": 630001,\r\n\t\"securityQuestion\": \"what is your fav sports\",\r\n\t\"securityAnswer\": \"Foot ball\"\r\n}"
+						},
+						"description": "Change the owner details after creation of owner account. Use your owner id here"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Owner Account",
+					"request": {
+						"url": "http://localhost:5000/users/owner/delete/6033a75f5471561e00231cf4",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5OTc2NTQsImp0aSI6IjYwMzM4MTFiMjQyYTZiMTVmMGVlY2EzNSIsInVzZXIiOnsiaWQiOiI2MDMzODExYjI0MmE2YjE1ZjBlZWNhMzUiLCJuYW1lIjoiQ2hhbmRyYSBNYW5pa2FuZGFuIFMiLCJlbWFpbCI6ImNoYW5kcnVvd25lckBnbWFpbC5jb20iLCJ0eXBlIjoib3duZXIifX0sImlhdCI6MTYxMzk5NzY1MywiZXhwIjoxNjE0MDAxMjUzfQ.z6MpoIWUAIvl4hQu_q4Jh6QtvvmgdFm-R1SaHtB1qss",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "A owner can delete account. Use your owner id here"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"description": "",
+			"item": [
+				{
+					"name": "Signup Customer",
+					"request": {
+						"url": "localhost:5000/users/customer/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"chandru\",\r\n\t\"email\": \"chandrucustomer@gmail.com\",\r\n\t\"mobile\": 9629288009,\r\n\t\"password\": \"chandru007\",\r\n\t\"confirmPassword\": \"chandru007\",\r\n\t\"type\": \"customer\",\r\n\t\"address\": \"91, venkatachalam street\",\r\n\t\"city\": \"karaikudi\",\r\n\t\"state\": \"tamil nadu\",\r\n\t\"pincode\": 630001,\r\n\t\"securityQuestion\": \"what is your fav sports\",\r\n\t\"securityAnswer\": \"Foot ball\"\r\n}"
+						},
+						"description": "Create Customeraccount"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in Customer",
+					"request": {
+						"url": "localhost:5000/users/owner/signin",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"chandruowner@gmail.com\",\r\n\t\"password\": \"chandru007\",\r\n\t\"type\": \"owner\"\r\n}"
+						},
+						"description": "Customercan sign in using email, password and type"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Customer Account",
+					"request": {
+						"url": "http://localhost:5000/users/customer/edit/6033821c242a6b15f0eeca36",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTM5ODkwNTgsImp0aSI6IjYwMzM4MjFjMjQyYTZiMTVmMGVlY2EzNiIsInVzZXIiOnsiaWQiOiI2MDMzODIxYzI0MmE2YjE1ZjBlZWNhMzYiLCJuYW1lIjoiY2hhbmRydSIsImVtYWlsIjoiY2hhbmRydWN1c3RvbWVyQGdtYWlsLmNvbSIsInR5cGUiOiJjdXN0b21lciJ9fSwiaWF0IjoxNjEzOTg5MDU3LCJleHAiOjE2MTM5OTI2NTd9.IppPolP3_ZSqwdZSrMiOtLJyekiqYz-EZLUOyoCa4nw",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"chandru s\",\r\n\t\"email\": \"chandrucustomer@gmail.com\",\r\n\t\"mobile\": 9629288009,\r\n\t\"password\": \"chandru007\",\t\t\r\n\t\"address\": \"91, venkatachalam street\",\r\n\t\"city\": \"karaikudi\",\r\n\t\"state\": \"tamil nadu\",\r\n\t\"pincode\": 630001,\r\n\t\"securityQuestion\": \"what is your fav sports\",\r\n\t\"securityAnswer\": \"Foot ball\"\r\n}"
+						},
+						"description": "Change the customer details after creation of owner account. Use your customer id here"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer Account",
+					"request": {
+						"url": "http://localhost:5000/users/customer/delete/6033b5f079f10d1080af72f1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblBhcmFtcyI6eyJpYXQiOjE2MTQwMDE2NzYsImp0aSI6IjYwMzNiNWYwNzlmMTBkMTA4MGFmNzJmMSIsInVzZXIiOnsiaWQiOiI2MDMzYjVmMDc5ZjEwZDEwODBhZjcyZjEiLCJuYW1lIjoiY2hhbmRydSIsImVtYWlsIjoiY2hhbmRydWN1c3RvbWVyQGdtYWlsLmNvbSIsInR5cGUiOiJjdXN0b21lciJ9fSwiaWF0IjoxNjE0MDAxNjc1LCJleHAiOjE2MTQwMDUyNzV9.qDwzwV_8GCWtthkDfVrT_ymjgrjptcGZV9HcTXgoG0s",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "A customer can delete account. Use your customer id here"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
