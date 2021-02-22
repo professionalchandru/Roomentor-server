@@ -3,6 +3,7 @@
 const bcrypt = require("bcryptjs");
 const utils = require("../utils/common");
 const ownerModel = require("../model/owner");
+const roomModel = require("../model/room");
 const messages = require("../constants/messages");
 const jwt = require("jsonwebtoken");
 
@@ -14,6 +15,16 @@ class OwnerController {
    */
   async signUp({ req }) {
     try {
+      // Check Password And Confirm password are Same
+      if (req.body.password != req.body.confirmPassword) {
+        let response = {
+          status: messages.failure,
+          statusCode: 409,
+          message: messages.passwordMissMatch,
+        };
+        return response;
+      }
+
       //Generate hash password
       const salt = await bcrypt.genSalt(12);
       const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -141,14 +152,40 @@ class OwnerController {
         return response;
       }
 
-      await ownerModel.deleteOne({ _id: req.params.ownerId });
+      let roomsReferences = validOwner.roomsReference;
 
-      let response = {
-        status: messages.success,
-        statusCode: 200,
-        message: messages.ownerDeletedSuccessfully,
-      };
-      return response;
+      let roomAlreadyBookedFlag = false;
+      for (const roomId of roomsReferences) {
+        let room = await roomModel.findOne({ _id: roomId });
+        if (room.datesBooked.length) {
+          roomAlreadyBookedFlag = true;
+        } else if (
+          room.datesBooked.length == null ||
+          !room.datesBooked.length
+        ) {
+          let deleteRoom = await roomModel.deleteOne({ _id: roomId });
+          if (deleteRoom) {
+            await this.updateNoOfRooms(req.body.userId, roomId, "remove");
+          }
+        }
+      }
+      
+      if (!roomAlreadyBookedFlag) {
+        await ownerModel.deleteOne({ _id: req.params.ownerId });
+        let response = {
+          status: messages.success,
+          statusCode: 200,
+          message: messages.ownerDeletedSuccessfully,
+        };
+        return response;
+      } else {
+        let response = {
+          status: messages.failure,
+          statusCode: 200,
+          message: messages.cannotDeleteOwner,
+        };
+        return response;
+      }
     } catch (err) {
       throw err;
     }
@@ -251,15 +288,6 @@ class OwnerController {
   async updateNoOfRooms(ownerId, roomId, action) {
     try {
       let owner = await ownerModel.findOne({ _id: ownerId });
-      let roomsReference = owner.roomsReference;
-      let newRoomsReference;
-      let index;
-      if (roomsReference.includes(roomId)) {
-        index = roomsReference.indexOf(roomId);
-        newRoomsReference = roomsReference.splice(index, 1);
-      } else {
-        newRoomsReference = [...roomsReference, roomId];
-      }
       let newNoOfRooms;
       let result = null;
       if (action == "add") {
@@ -269,7 +297,9 @@ class OwnerController {
           {
             $set: {
               noOfRooms: newNoOfRooms,
-              roomsReference: newRoomsReference,
+            },
+            $push: {
+              roomsReference: roomId.toString(),
             },
           }
         );
@@ -280,7 +310,9 @@ class OwnerController {
           {
             $set: {
               noOfRooms: newNoOfRooms,
-              roomsReference: newRoomsReference,
+            },
+            $pull: {
+              roomsReference: roomId.toString(),
             },
           }
         );

@@ -7,6 +7,7 @@ const owner = require("../controller/owner");
 const messages = require("../constants/messages");
 const cloudinary = require("../utils/cloudinary");
 const jwt = require("jsonwebtoken");
+const moment = require("moment");
 
 class RoomController {
   /**
@@ -128,6 +129,15 @@ class RoomController {
         return response;
       }
 
+      if (validRoom.datesBooked.length) {
+        let response = {
+          status: messages.failure,
+          statusCode: 409,
+          message: messages.cannotDeleteRooms,
+        };
+        return response;
+      }
+
       let deleteRoom = await roomModel.deleteOne({ _id: req.params.roomId });
 
       if (deleteRoom) {
@@ -150,9 +160,121 @@ class RoomController {
   }
 
   /**
+   * SELECT ROOM BY ID
+   * @param {_id}
+   * @returns {room object}
+   */
+  async selectRoomById({ req }) {
+    try {
+      let getRoom = await roomModel.findOne({ _id: req.params.roomId });
+
+      if (!getRoom) {
+        let response = {
+          status: messages.failure,
+          statusCode: 404,
+          message: messages.invalidRoom,
+        };
+        return response;
+      }
+
+      let response = {
+        status: messages.success,
+        statusCode: 200,
+        message: getRoom,
+      };
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * LIST ALL ROOMS
+   * @param {}
+   * @returns {rooms array}
+   */
+  async listRooms({ req }) {
+    try {
+      let limit = req.query.limit ? req.query.limit : 10;
+      let offset = req.query.offset ? req.query.offset : 0;
+      let getRoom;
+
+      if (!offset) {
+        getRoom = await roomModel.find({}).limit(limit);
+      } else if (limit && offset) {
+        getRoom = await roomModel.find({}).skip(offset).limit(limit);
+      } else if (!limit && !offset) {
+        getRoom = await roomModel.find({}).limit(10);
+      }
+
+      if (!getRoom) {
+        let response = {
+          status: messages.failure,
+          statusCode: 404,
+          message: messages.noRoomsFound,
+        };
+        return response;
+      }
+
+      let response = {
+        status: messages.success,
+        statusCode: 200,
+        message: getRoom,
+      };
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * LIST ALL ROOMS BASED ON CITY NAME
+   * @param {city_name}
+   * @returns {rooms array}
+   */
+  async listRoomsByCity({ req }) {
+    try {
+      let limit = req.query.limit ? req.query.limit : 10;
+      let offset = req.query.offset ? req.query.offset : 0;
+      let getRoom;
+
+      if (!offset) {
+        getRoom = await roomModel
+          .find({ city: req.params.cityName })
+          .limit(limit);
+      } else if (limit && offset) {
+        getRoom = await roomModel
+          .find({ city: req.params.cityName })
+          .skip(offset)
+          .limit(limit);
+      } else if (!limit && !offset) {
+        getRoom = await roomModel.find({ city: req.params.cityName }).limit(10);
+      }
+
+      if (!getRoom) {
+        let response = {
+          status: messages.failure,
+          statusCode: 404,
+          message: messages.noRoomsFound,
+        };
+        return response;
+      }
+
+      let response = {
+        status: messages.success,
+        statusCode: 200,
+        message: getRoom,
+      };
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * UPLOAD ROOM IMAGES USING ROOM ID
    * @param {_id}
-   * @returns {object}
+   * @returns {object array}
    */
   async uploadImages({ req }) {
     try {
@@ -245,7 +367,77 @@ class RoomController {
         message: messages.removedSuccessfully,
       };
       return response;
-    } catch (err) {}
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * AVAILABLE DATES FOR ROOM BY ROOM ID
+   * @param {_id} objectId_room
+   * @returns {array objects}
+   */
+  async availableDates({ req }) {
+    try {
+      const getRoom = await roomModel.findOne({ _id: req.params.roomId });
+      if (!getRoom) {
+        let response = {
+          status: messages.failure,
+          statusCode: 404,
+          message: messages.invalidRoom,
+        };
+        return response;
+      }
+
+      let oldDatesBooked = getRoom.datesBooked;
+      let startDate = moment();
+      let endDate = moment().add(60, "days");
+      let now = startDate.clone();
+      startDate = moment(startDate, "DD-MM-YYYY");
+      endDate = moment(endDate, "DD-MM-YYYY");
+      now = moment(now, "DD-MM-YYYY");
+      let dates = [];
+
+      while (now.isSameOrBefore(endDate)) {
+        dates.push(now.format("DD-MM-YYYY"));
+        now.add(1, "days");
+      }
+
+      let alreadyBookedDates = [];
+
+      // Filter Booked Dates
+      for (const obj of oldDatesBooked) {
+        let newMomentStartDate = moment(obj.startDate, "DD-MM-YYYY");
+        let newMomentEndDate = moment(obj.endDate, "DD-MM-YYYY");
+
+        while (newMomentStartDate.isSameOrBefore(newMomentEndDate)) {
+          alreadyBookedDates.push(newMomentStartDate.format("DD-MM-YYYY"));
+          newMomentStartDate.add(1, "days");
+        }
+      }
+
+      // To filter available dates from total dates and booking dates
+      let availableDates = [];
+      if (alreadyBookedDates.length) {
+        availableDates = dates.filter(
+          (val) => !alreadyBookedDates.includes(val)
+        );
+      } else {
+        availableDates = dates;
+      }
+
+      let response = {
+        status: messages.success,
+        statusCode: 200,
+        message: {
+          availableDate: availableDates,
+          bookedDates: alreadyBookedDates,
+        },
+      };
+      return response;
+    } catch (err) {
+      throw err;
+    }
   }
 }
 

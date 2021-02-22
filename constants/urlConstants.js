@@ -23,6 +23,15 @@ module.exports = {
   deleteRoom: "/rooms/delete/:roomId",
   updateRoomStatus: "/rooms/updateStatus",
   selectRoom: "/rooms/:roomId",
+  listRooms: "/rooms/list",
+  listRoomsByCity: "/rooms/list/:cityName",
   uploadImages: "/rooms/uploadImage/:roomId",
   deleteImages: "/rooms/deleteImage/:roomId",
+  availablityCalender: "/rooms/availableDates/:roomId",
+
+  //Room booking URL constants
+  bookRoom: "/rooms/:roomId/book",
+  listRoomStatusByOwner: "/rooms/roomStatus/owner/:ownerId",
+  listRoomStatusByCustomer: "/rooms/roomStatus/customer/:customerId",
+  changeStatus: "/rooms/roomStatus/:statusId",
 };

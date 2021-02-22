@@ -47,6 +47,19 @@ router.put(
       if (res.statusCode !== 200) {
         return;
       }
+      
+      // Check the access privilage of user
+      if (req.body.userType !== "customer") {
+        let result = {
+          status: messages.failure,
+          statusCode: 401,
+          message: messages.noAccess,
+        };
+        return response.send({
+          result,
+          res,
+        });
+      }
       const result = await customer.editCustomer({ req });
       return response.send({
         result,
@@ -67,6 +80,20 @@ router.delete(url.customerDelete, common.checkAuth, async (req, res) => {
     if (res.statusCode !== 200) {
       return;
     }
+
+    // Check the access privilage of user
+    if (req.body.userType !== "customer") {
+      let result = {
+        status: messages.failure,
+        statusCode: 401,
+        message: messages.noAccess,
+      };
+      return response.send({
+        result,
+        res,
+      });
+    }
+
     const result = await customer.deleteCustomer({ req });
     return response.send({
       result,

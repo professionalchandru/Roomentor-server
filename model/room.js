@@ -43,14 +43,8 @@ const roomSchema = new mongoose.Schema({
     min: 3,
     max: 250,
   },
-  roomStatusId: {
-    type: String,
-  },
-  startDate: {
-    type: Date,
-  },
-  endDate: {
-    type: Date,
+  datesBooked: {
+    type: Array,
   },
   type: {
     type: String, // like classic 2x, double bed room, etc

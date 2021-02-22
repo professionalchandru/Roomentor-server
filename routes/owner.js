@@ -67,6 +67,19 @@ router.put(
       if (res.statusCode !== 200) {
         return;
       }
+
+      // Check the access privilage of user
+      if (req.body.userType !== "owner") {
+        let result = {
+          status: messages.failure,
+          statusCode: 401,
+          message: messages.noAccess,
+        };
+        return response.send({
+          result,
+          res,
+        });
+      }
       const result = await owner.editOwner({ req });
       return response.send({
         result,
@@ -87,6 +100,20 @@ router.delete(url.ownerDelete, common.checkAuth, async (req, res) => {
     if (res.statusCode !== 200) {
       return;
     }
+
+    // Check the access privilage of user
+    if (req.body.userType !== "owner") {
+      let result = {
+        status: messages.failure,
+        statusCode: 401,
+        message: messages.noAccess,
+      };
+      return response.send({
+        result,
+        res,
+      });
+    }
+
     const result = await owner.deleteOwner({ req });
     return response.send({
       result,

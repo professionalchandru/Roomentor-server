@@ -9,26 +9,27 @@ const roomStatusSchema = new mongoose.Schema({
   roomInfo: {
     type: String,
   },
-  ownerInfo: {
-    type: String,
-  },
   customerInfo: {
     type: String,
   },
-  daysOfBooked: {
+  noOfDaysBooked: {
+    type: Number,
+    required: true,
+  },
+  totalAmount: {
     type: Number,
     required: true,
   },
   startDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   endDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   roomStatus: {
-    type: String, // Either: Booked | Available
+    type: String, // Either: Booked | Vacated
   },
   createdAt: {
     type: Date,

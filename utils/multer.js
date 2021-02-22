@@ -5,7 +5,7 @@ const path = require("path");
 const messages = require("../constants/messages");
 
 /**
- * Multer Config
+ * Multer Config to upload images
  */
 module.exports = multer({
   storage: multer.diskStorage({}),

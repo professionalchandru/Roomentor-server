@@ -44,6 +44,7 @@ module.exports = {
           });
         } else {
           authReq.body.userId = decoded.tokenParams.user.id;
+          authReq.body.userType = decoded.tokenParams.user.type;
         }
       });
       next();

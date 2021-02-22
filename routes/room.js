@@ -7,7 +7,11 @@ const response = require("../utils/response");
 const validator = require("express-joi-validation").createValidator({
   passError: true,
 });
-const { validateAddRoom, validateEditRoom } = require("../schema/room");
+const {
+  validateAddRoom,
+  validateEditRoom,
+  validateListRoom,
+} = require("../schema/room");
 const messages = require("../constants/messages");
 const common = require("../utils/common");
 const upload = require("../utils/multer");
@@ -25,6 +29,21 @@ router.post(
       if (res.statusCode !== 200) {
         return;
       }
+
+      // Check the access privilage of user
+      let accessCheck = await checkAccess(req.body.userType);
+      if (!accessCheck) {
+        let result = {
+          status: messages.failure,
+          statusCode: 401,
+          message: messages.noAccess,
+        };
+        return response.send({
+          result,
+          res,
+        });
+      }
+
       const result = await room.addRoom({ req });
       return response.send({
         result,
@@ -49,6 +68,21 @@ router.put(
       if (res.statusCode !== 200) {
         return;
       }
+
+      // Check the access privilage of user
+      let accessCheck = await checkAccess(req.body.userType);
+      if (!accessCheck) {
+        let result = {
+          status: messages.failure,
+          statusCode: 401,
+          message: messages.noAccess,
+        };
+        return response.send({
+          result,
+          res,
+        });
+      }
+
       const result = await room.editRoom({ req });
       return response.send({
         result,
@@ -69,7 +103,89 @@ router.delete(url.deleteRoom, common.checkAuth, async (req, res) => {
     if (res.statusCode !== 200) {
       return;
     }
+
+    // Check the access privilage of user
+    let accessCheck = await checkAccess(req.body.userType);
+    if (!accessCheck) {
+      let result = {
+        status: messages.failure,
+        statusCode: 401,
+        message: messages.noAccess,
+      };
+      return response.send({
+        result,
+        res,
+      });
+    }
+
     const result = await room.deleteRoom({ req });
+    return response.send({
+      result,
+      res,
+    });
+  } catch (err) {
+    throw err;
+  }
+});
+
+/**
+ * LIST ROOMS
+ */
+router.get(
+  url.listRooms,
+  validator.query(validateListRoom),
+  common.checkAuth,
+  async (req, res) => {
+    try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
+      const result = await room.listRooms({ req });
+      return response.send({
+        result,
+        res,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+);
+
+/**
+ * LIST ROOMS BASED ON CITY NAME
+ */
+router.get(
+  url.listRoomsByCity,
+  validator.query(validateListRoom),
+  common.checkAuth,
+  async (req, res) => {
+    try {
+      // To check valid token
+      if (res.statusCode !== 200) {
+        return;
+      }
+      const result = await room.listRoomsByCity({ req });
+      return response.send({
+        result,
+        res,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+);
+
+/**
+ * SELECT ROOM BY ID
+ */
+router.get(url.selectRoom, common.checkAuth, async (req, res) => {
+  try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
+    const result = await room.selectRoomById({ req });
     return response.send({
       result,
       res,
@@ -84,14 +200,29 @@ router.delete(url.deleteRoom, common.checkAuth, async (req, res) => {
  */
 router.put(
   url.uploadImages,
-  common.checkAuth,
   upload.array("image"),
+  common.checkAuth,
   async (req, res) => {
     try {
       // To check valid token
       if (res.statusCode !== 200) {
         return;
       }
+
+      // Check the access privilage of user
+      let accessCheck = await checkAccess(req.body.userType);
+      if (!accessCheck) {
+        let result = {
+          status: messages.failure,
+          statusCode: 401,
+          message: messages.noAccess,
+        };
+        return response.send({
+          result,
+          res,
+        });
+      }
+
       const result = await room.uploadImages({ req });
       return response.send({
         result,
@@ -112,6 +243,20 @@ router.delete(url.deleteImages, common.checkAuth, async (req, res) => {
     if (res.statusCode !== 200) {
       return;
     }
+
+    // Check the access privilage of user
+    if (req.body.userType !== "owner") {
+      let result = {
+        status: messages.failure,
+        statusCode: 401,
+        message: messages.noAccess,
+      };
+      return response.send({
+        result,
+        res,
+      });
+    }
+
     const result = await room.deleteImages({ req });
     return response.send({
       result,
@@ -121,5 +266,34 @@ router.delete(url.deleteImages, common.checkAuth, async (req, res) => {
     throw err;
   }
 });
+
+/**
+ * AVAILABLITY CALENDER FOR ROOM BY ROOM ID
+ */
+router.get(url.availablityCalender, common.checkAuth, async (req, res) => {
+  try {
+    // To check valid token
+    if (res.statusCode !== 200) {
+      return;
+    }
+
+    const result = await room.availableDates({ req });
+    return response.send({
+      result,
+      res,
+    });
+  } catch (err) {
+    throw err;
+  }
+});
+
+// Function to check the access privilage of user
+const checkAccess = async (userType) => {
+  let isOwner = false;
+  if (userType == "owner") {
+    isOwner = true;
+  }
+  return isOwner;
+};
 
 module.exports = router;

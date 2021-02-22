@@ -47,6 +47,7 @@ app.use(
 app.use("/", routes.owner);
 app.use("/", routes.customer);
 app.use("/", routes.room);
+app.use("/", routes.bookRooms);
 
 /** Middleware to return a error message of JOI validation */
 app.use((err, req, res, next) => {

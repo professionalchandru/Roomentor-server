@@ -44,4 +44,17 @@ const validateEditRoom = Joi.object()
     amenities: Joi.array().required(),
   })
   .required();
-module.exports = { validateAddRoom, validateEditRoom };
+
+/**
+ * VALIDATE LIST ROOM REQUEST
+ */
+const validateListRoom = Joi.object().keys({
+  limit: Joi.number().optional(),
+  offset: Joi.number().optional(),
+});
+
+module.exports = {
+  validateAddRoom,
+  validateEditRoom,
+  validateListRoom,
+};

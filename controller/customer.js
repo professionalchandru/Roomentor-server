@@ -5,6 +5,7 @@ const utils = require("../utils/common");
 const customerModel = require("../model/customer");
 const messages = require("../constants/messages");
 const jwt = require("jsonwebtoken");
+const roomStatusModel = require("../model/roomStatus");
 
 class CustomerController {
   /**
@@ -14,6 +15,16 @@ class CustomerController {
    */
   async signUp({ req }) {
     try {
+      // Check Password And Confirm password are Same
+      if (req.body.password != req.body.confirmPassword) {
+        let response = {
+          status: messages.failure,
+          statusCode: 409,
+          message: messages.passwordMissMatch,
+        };
+        return response;
+      }
+
       //Generate hash password
       const salt = await bcrypt.genSalt(12);
       const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -144,7 +155,18 @@ class CustomerController {
         };
         return response;
       }
-
+      let customerRoomStatus = await roomStatusModel.findOne({
+        customerInfo: req.params.customerId,
+        roomStatus: "Booked",
+      });
+      if (customerRoomStatus) {
+        let response = {
+          status: messages.failure,
+          statusCode: 400,
+          message: messages.cannotDeleteCustomer,
+        };
+        return response;
+      }
       await customerModel.deleteOne({ _id: req.params.customerId });
 
       let response = {
