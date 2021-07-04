@@ -52,15 +52,15 @@ class OwnerController {
         email: req.body.email,
       });
       const ownerMobile = await ownerModel.findOne({
-        mobil: req.body.mobile,
-      });
+        mobile: req.body.mobile
+      });      
 
       if (ownerEmail || ownerMobile) {
         let response = {
           status: messages.failure,
           statusCode: 409,
           message: messages.ownerAlreadyExist,
-        };
+        };        
         return response;
       }
 
@@ -75,7 +75,7 @@ class OwnerController {
       };
       return response;
     } catch (err) {
-      throw err;
+      throw err;      
     }
   }
 
