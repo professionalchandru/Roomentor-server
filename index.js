@@ -70,7 +70,6 @@ let dbOptions = {
   dbName: "roomentor",
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
   autoIndex: true,
 };
 

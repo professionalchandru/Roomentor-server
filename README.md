@@ -62,7 +62,7 @@ Here I don't attach my .env file. Instead you need to create .env file and add t
 
 2.  You can find differnt api folders in insomnia and postman named owner, customer, rooms, images, and book room and room status.
 
-    # Owner:
+    ## Owner:
 
     1.  Need to signup using necessary credentials.
 
@@ -70,7 +70,7 @@ Here I don't attach my .env file. Instead you need to create .env file and add t
 
     3.  After sign in you can edit or delete users using respective api's.
 
-    # Customer:
+    ## Customer:
 
     1.  Need to signup using necessary credentials.
 
@@ -78,7 +78,7 @@ Here I don't attach my .env file. Instead you need to create .env file and add t
 
     3.  After sign in you can edit or delete users using respective api's.
 
-    # Rooms:
+    ## Rooms:
 
     1.  Inside rooms folder you can see many of api's which is mainly based on rooms which can handle by respective users.
 
@@ -88,16 +88,33 @@ Here I don't attach my .env file. Instead you need to create .env file and add t
 
     4.  Once Customer selected particular room, he can check the availablity using availablity calender api. Then he can able to book rooms in which dates are available for next 60 days.
 
-    # Images:
+    ## Images:
 
     1.  Owner can add and delete respective room images
 
-    # Book Rooms and Room Status
+    ## Book Rooms and Room Status
 
     1.  Once customer is satisfied with room and that's availablity, he can able to book the rooms.
 
     2.  Owner and customer can track their booking status by their respective api's.
 
     3.  Once the customer arrived, statyed and vacted room a owner can change the room status from "Booked" to "Vacated".
+
+# Reference Data
+1. If you want to check the data and access mongodb, cloudinary and make project ready to run you can replace this to .env file.
+
+   1. DB_URI = mongodb+srv://chandru:chandru@cluster0.9tiqi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+   2. JWT_SECRET = j@u34bJHD#$@Avhls3%4,.2
+
+   3. CLOUD_NAME= chandru
+
+   4. CLOUD_API_KEY= 942937563591164
+
+   5. CLOUD_API_SECRET = T6HjptioXuygGnI2MzkntG_upQk
+
+   ## user name and password for mongodb and cloudinary
+   EMAIL = ketivex246@xasems.com
+   PASSWORD = Abcd@1234
 
 I hope these are the hints and procedures will help you to understand the flow
